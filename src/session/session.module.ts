@@ -4,6 +4,7 @@ import { UserSchema, User } from "src/dal/schemas/user.schema";
 import { SessionController } from "./session.controller";
 import { SessionService } from "./session.service";
 import { Role, RoleSchema } from "src/dal/schemas/role.schema";
+import { UserRepository } from "src/dal/repositories/user.repository";
 
 @Module({
   imports: [
@@ -11,6 +12,6 @@ import { Role, RoleSchema } from "src/dal/schemas/role.schema";
     MongooseModule.forFeature([{ name: Role.name, schema: RoleSchema }])
   ],
   controllers: [SessionController],
-  providers: [SessionService],
+  providers: [SessionService, UserRepository],
 })
 export class SessionModule {}

@@ -1,9 +1,10 @@
 import * as mongoose from 'mongoose';
+import { Role } from './role.schema';
 
 export class User extends mongoose.Document {
   email: string;
   password: string;
-  role: any;
+  role: mongoose.Types.ObjectId | Role;
 }
 
 export const UserSchema = new mongoose.Schema({
