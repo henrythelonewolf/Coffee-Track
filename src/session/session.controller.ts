@@ -1,10 +1,8 @@
-import { Controller, Post, HttpCode, HttpStatus, Body, Header, Res, Get } from '@nestjs/common';
-import { LoginResponseDto, LoginRequestDto } from './dto/login.dto';
-import { SessionService } from './session.service';
-import { AuthenticationResponseDto } from './dto/authentication.dto';
+import { Body, Controller, Header, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
-
-export const cookieSecretKey = 'B5r+/HF5JJW4YerVYBPMQAOuM4Q0+MxqBJ0/gOmfbhMPGBKbDeDyzasTugJkh74TLgfkeBnG6ZwYXOBxdRHZKwOBO4B+Y8VNvcbapbVKBSFZzUVv1GSC/I3adXIwuh3aLgHhYy+BJ5TeGeWesk0EUO1YVvY1A+k9uIHYaEXxzy3n6eHNUN0iFJZ2fe306J6NNK89BOTya/lHhPnrOo7qmQDdKUVUGb/hQytG92Ik+ztUGJJnDlqcKeF7sHq2yienV2oLwpl/wMa530P4BrNRqSjJtV+UsJYjvQrauf0p5gMPsabyhOfdMEtLAiF6L5rfpWF9M1RMKYk3ZL6x3EkkoQ==';
+import { AuthenticationResponseDto } from './dto/authentication.dto';
+import { LoginRequestDto } from './dto/login.dto';
+import { SessionService } from './session.service';
 
 @Controller('/api/session')
 export class SessionController {

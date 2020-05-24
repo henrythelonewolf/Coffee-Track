@@ -1,6 +1,7 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, UseGuards } from '@nestjs/common';
 import { AppService } from './app.service';
 import { RootResponse } from './dto/root.dto';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 @Controller()
 export class AppController {
@@ -13,5 +14,13 @@ export class AppController {
       message
     };
     return response;
+  }
+
+  @Get('meows')
+  @UseGuards(AuthGuard)
+  getMeow(): any {
+    return {
+      message: 'meow'
+    };
   }
 }

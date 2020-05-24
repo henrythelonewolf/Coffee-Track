@@ -4,11 +4,7 @@ import { LoginRequestDto, LoginResponseDto } from './dto/login.dto';
 import * as jwt from 'jsonwebtoken';
 import { Role } from 'src/dal/schemas/role.schema';
 import * as bcrypt from 'bcrypt';
-
-const refreshSecretKey = 'ALA6BF9sXgDJMnB3WhBdvZHtti4M2ovinUxdKexdA+WI8yJiGKDiCCD0eFN23eOt8ylUhrCECnrzlAhND0fBZ5faJ9qbecpzDtNtG550gEwKSZMfOa5uan0ln7HYQ461TZcJ2vkvfY6iNRhAa5jR7Uqzu4vtJ+TNoe2sG5d/dZj2PQmIq26mN0r7l8hYDpoZFuYA22RFD9pnSh1GivrFsLBued1O7rWVgDH+h/V0kIzlVtpWWo8dL90BFZ13rK1X8kHenQ+YksC9edNmCAvNDXNasJjkpx6SfrgzTnFENm0Kt7A/i0XqPhTSdJ1xom10gwkWsvsftYxQqJTamJhmng==';
-const accessSecretKey = 'BHx2CwgekYkQLqdGbviMEhrTEtrdZTDbz75CeoiNy4Yg6PuMN41TuWjSE1p94GA';
-const accessTokenExpiry = 900;
-const refreshTokenExpiry = 432000;
+import { accessSecretKey, refreshSecretKey, accessTokenExpiry, refreshTokenExpiry } from 'src/shared/configs/tokens.config';
 
 @Injectable()
 export class SessionService {
