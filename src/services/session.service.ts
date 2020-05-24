@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { UserRepository } from 'src/dal/repositories/user.repository';
-import { LoginRequestDto, LoginResponseDto } from './dto/login.dto';
+import { LoginRequestDto, LoginResponseDto } from '../dto/session/login.dto';
 import * as jwt from 'jsonwebtoken';
 import { Role } from 'src/dal/schemas/role.schema';
 import * as bcrypt from 'bcrypt';

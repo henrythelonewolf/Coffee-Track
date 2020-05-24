@@ -1,8 +1,8 @@
 import { Body, Controller, Header, Post, Res } from '@nestjs/common';
 import { Response } from 'express';
-import { AuthenticationResponseDto } from './dto/authentication.dto';
-import { LoginRequestDto } from './dto/login.dto';
-import { SessionService } from './session.service';
+import { AuthenticationResponseDto } from '../dto/session/authentication.dto';
+import { LoginRequestDto } from '../dto/session/login.dto';
+import { SessionService } from '../services/session.service';
 
 @Controller('/api/session')
 export class SessionController {

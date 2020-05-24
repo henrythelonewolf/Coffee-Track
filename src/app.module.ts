@@ -1,10 +1,27 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { CoffeeModule } from './coffee/coffee.module';
-import { SessionModule } from './session/session.module';
-import { UserService } from './user/user.service';
+import { AppController } from './controllers/app.controller';
+import { Role, RoleSchema } from './dal/schemas/role.schema';
+import { User, UserSchema } from './dal/schemas/user.schema';
+import { SessionController } from './controllers/session.controller';
+import { SessionService } from './services/session.service';
+import { UserService } from './services/user.service';
+import { UserRepository } from './dal/repositories/user.repository';
+import { CoffeeService } from './services/coffee.service';
+import { CoffeeRepository } from './dal/repositories/coffee.repository';
+import { Coffee, CoffeeSchema } from './dal/schemas/coffee.schema';
+import { CoffeeTypeSchema, CoffeeType } from './dal/schemas/coffee-type.schema';
+import { CoffeeController } from './controllers/coffee.controller';
+
+const services = [
+  SessionService, 
+  UserService, 
+  CoffeeService,
+];
+const repositories = [
+  UserRepository,
+  CoffeeRepository,
+];
 
 const mongooseOptions = {
   useNewUrlParser: true,
@@ -13,8 +30,19 @@ const mongooseOptions = {
 };
 
 @Module({
-  imports: [MongooseModule.forRoot('mongodb://127.0.0.1:27017/auth', mongooseOptions), SessionModule, CoffeeModule],
-  controllers: [AppController],
-  providers: [AppService, UserService],
+  imports: [
+    MongooseModule.forRoot('mongodb://127.0.0.1:27017/auth', mongooseOptions),
+    MongooseModule.forFeature([
+      { name: User.name, schema: UserSchema },
+      { name: Role.name, schema: RoleSchema },
+      { name: Coffee.name, schema: CoffeeSchema }, 
+      { name: CoffeeType.name, schema: CoffeeTypeSchema },
+    ])
+  ],
+  controllers: [ AppController, SessionController, CoffeeController ],
+  providers: [
+    ...services, 
+    ...repositories
+  ],
 })
 export class AppModule {}

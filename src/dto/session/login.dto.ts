@@ -1,4 +1,4 @@
-import { ErrorResponseDto } from "src/shared/dto/error-response.dto";
+import { ErrorResponseDto } from "src/dto/shared/error-response.dto";
 
 export class LoginResponseDto {
   user?: {
