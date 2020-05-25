@@ -16,6 +16,7 @@ async function bootstrap() {
     optionsSuccessStatus: 204,
     credentials: true
   });
+  app.setGlobalPrefix('/api');
   await app.listen(3000, '0.0.0.0');
 }
 bootstrap();

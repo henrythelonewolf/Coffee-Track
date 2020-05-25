@@ -5,13 +5,16 @@ import * as jwt from 'jsonwebtoken';
 import { Role } from 'src/dal/schemas/role.schema';
 import * as bcrypt from 'bcrypt';
 import { accessSecretKey, refreshSecretKey, accessTokenExpiry, refreshTokenExpiry } from 'src/shared/configs/tokens.config';
+import { RefreshRequestDto, RefreshResponseDto } from 'src/dto/session/refresh.dto';
+import { ErrorResponseDto } from 'src/dto/shared/error-response.dto';
 
 @Injectable()
 export class SessionService {
   constructor(private userRepository: UserRepository) {}
   async authenticate(request: LoginRequestDto): Promise<LoginResponseDto> {
     const user = await this.userRepository.findUserByEmail(request.user.email);
-    console.log(user);
+    
+    // user not exist validation
     if (typeof user === 'undefined') {
       const responseDto: LoginResponseDto = {
         error: {
@@ -36,10 +39,14 @@ export class SessionService {
     
     const role = user.role as Role;
 
+    // token payloads
     const payload = {
       email: user.email,
-      role: role.roleDescription
+      userId: user.id,
+      role: role.roleDescription,
     };
+
+    // signing tokens
     const accessToken = jwt.sign(payload, accessSecretKey, { algorithm: 'HS256', expiresIn: accessTokenExpiry });
     const refreshToken = jwt.sign(payload, refreshSecretKey, { algorithm: 'HS256', expiresIn: refreshTokenExpiry });
     
@@ -57,6 +64,49 @@ export class SessionService {
         expiresIn: refreshTokenExpiry
       },
     };
+    return responseDto;
+  }
+
+  async refresh(request: RefreshRequestDto): Promise<RefreshResponseDto> {
+    let responseDto = new RefreshResponseDto();
+
+    try {
+      const decodedPayload: any = jwt.decode(request.refreshToken);
+      const email = decodedPayload.email;
+      const role = decodedPayload.role;
+      const userId = decodedPayload.userId;
+
+      const payload = {
+        email,
+        role,
+        userId
+      };
+
+      const accessToken = jwt.sign(payload, accessSecretKey, { algorithm: 'HS256', expiresIn: accessTokenExpiry });
+      const refreshToken = jwt.sign(payload, refreshSecretKey, { algorithm: 'HS256', expiresIn: refreshTokenExpiry });
+
+      Object.assign(responseDto, {
+        user: {
+          email,
+          role
+        },
+        access: {
+          accessToken,
+          expiresIn: accessTokenExpiry
+        },
+        refresh: {
+          refreshToken,
+          expiresIn: refreshTokenExpiry
+        },
+      });
+    } catch (exception) {
+      console.log(exception);
+      responseDto.error = new ErrorResponseDto({
+        code: 'RefreshError',
+        message: 'Something went wrong when refreshing token.'
+      });
+    }
+
     return responseDto;
   }
 

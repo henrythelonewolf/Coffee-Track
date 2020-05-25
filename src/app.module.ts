@@ -12,6 +12,7 @@ import { CoffeeRepository } from './dal/repositories/coffee.repository';
 import { Coffee, CoffeeSchema } from './dal/schemas/coffee.schema';
 import { CoffeeTypeSchema, CoffeeType } from './dal/schemas/coffee-type.schema';
 import { CoffeeController } from './controllers/coffee.controller';
+import { UserController } from './controllers/user.controller';
 
 const services = [
   SessionService, 
@@ -31,7 +32,7 @@ const mongooseOptions = {
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://127.0.0.1:27017/auth', mongooseOptions),
+    MongooseModule.forRoot('mongodb://127.0.0.1:27017/coffee-track', mongooseOptions),
     MongooseModule.forFeature([
       { name: User.name, schema: UserSchema },
       { name: Role.name, schema: RoleSchema },
@@ -39,7 +40,7 @@ const mongooseOptions = {
       { name: CoffeeType.name, schema: CoffeeTypeSchema },
     ])
   ],
-  controllers: [ AppController, SessionController, CoffeeController ],
+  controllers: [ AppController, SessionController, CoffeeController, UserController ],
   providers: [
     ...services, 
     ...repositories
