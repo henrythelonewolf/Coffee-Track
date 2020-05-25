@@ -1,8 +1,8 @@
-import { Controller, Get, Post, UseGuards, Body, BadRequestException, HttpCode, HttpStatus } from '@nestjs/common';
-import { CoffeeService } from '../services/coffee.service';
-import { AuthGuard } from 'src/shared/guards/auth.guard';
-import { User } from 'src/shared/decorators/user.decorators';
-import { CreateCoffeeTypeRequest, CreateCoffeeTypeRequestDto } from 'src/dto/coffee/coffee-type.dto';
+import { CreateCoffeeTypeRequest, CreateCoffeeTypeRequestDto } from '@dto/coffee/coffee-type.dto';
+import { BadRequestException, Body, Controller, Get, HttpCode, HttpStatus, Post, UseGuards } from '@nestjs/common';
+import { CoffeeService } from '@services/coffee.service';
+import { User } from '@shared/decorators/user.decorators';
+import { AuthGuard } from '@shared/guards/auth.guard';
 
 @Controller('coffee')
 export class CoffeeController {

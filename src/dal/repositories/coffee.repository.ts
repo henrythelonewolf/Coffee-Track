@@ -1,10 +1,10 @@
+import { CreateCoffeeTypeRequestDto } from "@dto/coffee/coffee-type.dto";
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { Coffee } from '../schemas/coffee.schema';
-import { CoffeeType } from '../schemas/coffee-type.schema';
-import { Model } from "mongoose";
+import { CoffeeType } from '@schemas/coffee-type.schema';
+import { Coffee } from '@schemas/coffee.schema';
 import * as mongoose from 'mongoose';
-import { CreateCoffeeTypeRequestDto } from "src/dto/coffee/coffee-type.dto";
+import { Model } from "mongoose";
 
 @Injectable()
 export class CoffeeRepository {

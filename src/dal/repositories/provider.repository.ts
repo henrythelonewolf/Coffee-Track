@@ -1,9 +1,9 @@
+import { CreateCoffeeProviderRequestDto, CreateCoffeeProviderResponseDto } from "@dto/provider/provider.dto";
+import { ErrorResponseDto } from "@dto/shared/error-response.dto";
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { CoffeeProvider } from "../schemas/provider.schema";
+import { CoffeeProvider } from "@schemas/provider.schema";
 import { Model } from "mongoose";
-import { CreateCoffeeProviderResponseDto, CreateCoffeeProviderRequestDto } from "src/dto/provider/provider.dto";
-import { ErrorResponseDto } from "src/dto/shared/error-response.dto";
 
 @Injectable()
 export class ProviderRepository {

@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
-import { ProviderRepository } from "src/dal/repositories/provider.repository";
-import { CreateCoffeeProviderResponseDto, CreateCoffeeProviderRequestDto } from "src/dto/provider/provider.dto";
+import { ProviderRepository } from "@repositories/provider.repository";
+import { CreateCoffeeProviderResponseDto, CreateCoffeeProviderRequestDto } from "@dto/provider/provider.dto";
 
 @Injectable()
 export class ProviderService {

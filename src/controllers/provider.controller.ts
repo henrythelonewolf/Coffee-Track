@@ -1,10 +1,10 @@
-import { Controller, Post, Body, BadRequestException, HttpStatus, HttpCode, UseGuards } from "@nestjs/common";
-import { CreateCoffeeProviderRequest, CreateCoffeeProviderRequestDto } from "src/dto/provider/provider.dto";
-import { ProviderService } from "src/services/provider.service";
-import { ErrorResponseDto } from "src/dto/shared/error-response.dto";
-import { AuthGuard } from "src/shared/guards/auth.guard";
-import { User } from "src/shared/decorators/user.decorators";
-import { AccessTokenDto } from "src/dto/shared/access-token.dto";
+import { CreateCoffeeProviderRequest, CreateCoffeeProviderRequestDto } from "@dto/provider/provider.dto";
+import { AccessTokenDto } from "@dto/shared/access-token.dto";
+import { ErrorResponseDto } from "@dto/shared/error-response.dto";
+import { BadRequestException, Body, Controller, HttpCode, HttpStatus, Post, UseGuards } from "@nestjs/common";
+import { ProviderService } from "@services/provider.service";
+import { User } from "@shared/decorators/user.decorators";
+import { AuthGuard } from "@shared/guards/auth.guard";
 
 @Controller('provider')
 export class ProviderController {

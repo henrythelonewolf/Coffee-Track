@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CoffeeRepository } from 'src/dal/repositories/coffee.repository';
-import { CreateCoffeeTypeRequestDto } from 'src/dto/coffee/coffee-type.dto';
+import { CoffeeRepository } from '@repositories/coffee.repository';
+import { CreateCoffeeTypeRequestDto } from '@dto/coffee/coffee-type.dto';
 
 @Injectable()
 export class CoffeeService {

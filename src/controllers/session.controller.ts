@@ -1,11 +1,11 @@
+import { AuthenticationResponseDto } from '@dto/session/authentication.dto';
+import { LoginRequestDto } from '@dto/session/login.dto';
+import { RefreshRequestDto } from '@dto/session/refresh.dto';
+import { ErrorResponseDto } from '@dto/shared/error-response.dto';
 import { BadRequestException, Body, Controller, Header, HttpCode, HttpStatus, InternalServerErrorException, Post, Res } from '@nestjs/common';
+import { SessionService } from '@services/session.service';
+import { Cookie } from '@shared/decorators/cookie.decorators';
 import { Response } from 'express';
-import { RefreshRequestDto } from 'src/dto/session/refresh.dto';
-import { ErrorResponseDto } from 'src/dto/shared/error-response.dto';
-import { Cookie } from 'src/shared/decorators/cookie.decorators';
-import { AuthenticationResponseDto } from '../dto/session/authentication.dto';
-import { LoginRequestDto } from '../dto/session/login.dto';
-import { SessionService } from '../services/session.service';
 
 @Controller('session')
 export class SessionController {

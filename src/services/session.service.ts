@@ -1,12 +1,12 @@
+import { LoginRequestDto, LoginResponseDto } from '@dto/session/login.dto';
+import { RefreshRequestDto, RefreshResponseDto } from '@dto/session/refresh.dto';
+import { ErrorResponseDto } from '@dto/shared/error-response.dto';
 import { Injectable } from '@nestjs/common';
-import { UserRepository } from 'src/dal/repositories/user.repository';
-import { LoginRequestDto, LoginResponseDto } from '../dto/session/login.dto';
-import * as jwt from 'jsonwebtoken';
-import { Role } from 'src/dal/schemas/role.schema';
+import { UserRepository } from '@repositories/user.repository';
+import { Role } from '@schemas/role.schema';
+import { accessSecretKey, accessTokenExpiry, refreshSecretKey, refreshTokenExpiry } from '@shared/configs/tokens.config';
 import * as bcrypt from 'bcrypt';
-import { accessSecretKey, refreshSecretKey, accessTokenExpiry, refreshTokenExpiry } from 'src/shared/configs/tokens.config';
-import { RefreshRequestDto, RefreshResponseDto } from 'src/dto/session/refresh.dto';
-import { ErrorResponseDto } from 'src/dto/shared/error-response.dto';
+import * as jwt from 'jsonwebtoken';
 
 @Injectable()
 export class SessionService {

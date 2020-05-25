@@ -9,7 +9,14 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
-    "incremental": true
+    "incremental": true,
+    "paths": {
+      "@services/*": ["./src/services/*"],
+      "@shared/*": ["./src/shared/*"],
+      "@dto/*": ["./src/dto/*"],
+      "@repositories/*": ["./src/dal/repositories/*"],
+      "@schemas/*": ["./src/dal/schemas/*"]
+    }
   },
   "exclude": ["node_modules", "dist"]
 }

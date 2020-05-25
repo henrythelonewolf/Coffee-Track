@@ -1,10 +1,9 @@
-import { Controller, Post, Body, Header } from '@nestjs/common';
-import { CreateUserRequest } from 'src/dto/user/user.dto';
+import { Body, Controller, Header, Post } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { User } from 'src/dal/schemas/user.schema';
 import { Model } from 'mongoose';
-import * as bcrypt from 'bcrypt';
-import { Role } from 'src/dal/schemas/role.schema';
+import { Role } from '@schemas/role.schema';
+import { User } from '@schemas/user.schema';
+import { CreateUserRequest } from '@dto/user/user.dto';
 
 @Controller('user')
 export class UserController {
