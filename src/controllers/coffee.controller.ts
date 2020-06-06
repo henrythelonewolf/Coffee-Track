@@ -3,6 +3,7 @@ import { BadRequestException, Body, Controller, Get, HttpCode, HttpStatus, Post,
 import { CoffeeService } from '@services/coffee.service';
 import { User } from '@shared/decorators/user.decorators';
 import { AuthGuard } from '@shared/guards/auth.guard';
+import { AccessTokenDto } from '@dto/shared/access-token.dto';
 
 @Controller('coffee')
 export class CoffeeController {
@@ -13,10 +14,10 @@ export class CoffeeController {
     
   }
 
-  @Post('/type/create')
+  @Post('/type')
   @HttpCode(HttpStatus.CREATED)
   @UseGuards(AuthGuard)
-  async createCoffeeType(@User() user, @Body() request: CreateCoffeeTypeRequest): Promise<any> {
+  async createCoffeeType(@User() user: AccessTokenDto, @Body() request: CreateCoffeeTypeRequest): Promise<any> {
     const requestDto: CreateCoffeeTypeRequestDto = {
       region: request.region,
       remarks: request.remarks,

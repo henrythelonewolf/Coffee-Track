@@ -14,12 +14,20 @@ export class ProviderController {
   @HttpCode(HttpStatus.CREATED)
   @UseGuards(AuthGuard)
   async createProvider(@User() user: AccessTokenDto, @Body() request: CreateCoffeeProviderRequest): Promise<any> {
+    if (typeof request.name === 'undefined' || request.name.length === 0) {
+      throw new BadRequestException(new ErrorResponseDto({
+        code: 'ValidationError',
+        message: 'Name is required.'
+      }));
+    }
+
     const requestDto = new CreateCoffeeProviderRequestDto({
       name: request.name,
       lat: request.lat,
       long: request.long,
       userId: user.userId
     });
+    
     const responseDto = await this.providerService.createCoffeeProvider(requestDto);
     if (typeof responseDto.error !== 'undefined') {
       throw new BadRequestException(new ErrorResponseDto({

@@ -15,7 +15,9 @@ export class ProviderRepository {
       const model = new this.providerModel({
         name: request.name,
         lat: request.lat,
-        long: request.long
+        long: request.long,
+        createdBy: request.userId,
+        updatedBy: request.userId
       });
       await model.save();
     } catch (exception) {
