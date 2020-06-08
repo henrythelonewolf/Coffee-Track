@@ -1,5 +1,6 @@
 import { Brew } from "@schemas/brew.schema";
 import { ErrorResponseDto } from "@dto/shared/error-response.dto";
+import { BaseResponseDto } from "@dto/shared/base.dto";
 
 export class CreateBrewMethodRequest {
   constructor(init?: Partial<CreateBrewMethodRequest>) {
@@ -28,11 +29,11 @@ export class CreateBrewMethodRequestDto {
   userId?: string;
 }
 
-export class CreateBrewMethodResponseDto {
+export class CreateBrewMethodResponseDto extends BaseResponseDto {
   constructor(init?: Partial<CreateBrewMethodResponseDto>) {
+    super();
     Object.assign(this, init);
   }
 
   brewMethod?: Brew;
-  error?: ErrorResponseDto;
 }

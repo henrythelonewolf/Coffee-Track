@@ -21,20 +21,26 @@ import { BrewService } from '@services/brew.service';
 import { BrewRepository } from '@repositories/brew.repository';
 import { Brew, BrewSchema } from '@schemas/brew.schema';
 import { BrewController } from './controllers/brew.controller';
+import { RecipeService } from '@services/recipe.service';
+import { RecipeRepository } from '@repositories/recipe.repository';
+import { RecipeController } from './controllers/recipe.controller';
+import { Recipe, RecipeSchema } from '@schemas/recipe.schema';
 
 const services = [
   SessionService, 
   UserService, 
   CoffeeService,
   ProviderService,
-  BrewService
+  BrewService,
+  RecipeService,
 ];
 
 const repositories = [
   UserRepository,
   CoffeeRepository,
   ProviderRepository,
-  BrewRepository
+  BrewRepository,
+  RecipeRepository,
 ];
 
 const controllers = [ 
@@ -43,7 +49,8 @@ const controllers = [
   CoffeeController, 
   UserController, 
   ProviderController, 
-  BrewController 
+  BrewController,
+  RecipeController
 ]
 
 const mongooseOptions = {
@@ -61,7 +68,8 @@ const mongooseOptions = {
       { name: Coffee.name, schema: CoffeeSchema }, 
       { name: CoffeeType.name, schema: CoffeeTypeSchema },
       { name: CoffeeProvider.name, schema: CoffeeProviderSchema },
-      { name: Brew.name, schema: BrewSchema}
+      { name: Brew.name, schema: BrewSchema},
+      { name: Recipe.name, schema: RecipeSchema}
     ])
   ],
   controllers: controllers,

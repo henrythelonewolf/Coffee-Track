@@ -10,7 +10,7 @@ export class Recipe extends mongoose.Document {
   ratio: number; // g/L
   brewMethod: mongoose.Types.ObjectId | Brew;
   rating: number;
-  tasteNotes: Array<string>;
+  tasteNotes: string[];
   remarks: string;
   createdBy: mongoose.Types.ObjectId | User;
   updatedBy: mongoose.Types.ObjectId | User;
@@ -45,9 +45,9 @@ export const RecipeSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.Number,
     required: true
   },
-  tasteNotes: {
-    type: mongoose.Schema.Types.Array,
-  },
+  tasteNotes: [{
+    type: mongoose.Schema.Types.String,
+  }],
   remarks: {
     type: mongoose.Schema.Types.String,
   },
@@ -59,4 +59,4 @@ export const RecipeSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
-})
+}, {timestamps: true})

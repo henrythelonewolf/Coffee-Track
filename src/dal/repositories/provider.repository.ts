@@ -4,6 +4,8 @@ import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { CoffeeProvider } from "@schemas/provider.schema";
 import { Model } from "mongoose";
+import { GetAllCoffeeProviderResponseDto } from "@dto/provider/fetch.provider.dto";
+import { extractErrorMessage } from "@shared/helper/error.helper";
 
 @Injectable()
 export class ProviderRepository {
@@ -27,5 +29,28 @@ export class ProviderRepository {
       });
     }
     return response;
+  }
+
+  async getAllCoffeeProviders(): Promise<GetAllCoffeeProviderResponseDto> {
+    try {
+      const coffeeProviders = await this.providerModel.find({});
+      const responseDto = new GetAllCoffeeProviderResponseDto({
+        rawCoffeeProviders: coffeeProviders
+      });
+      
+      return responseDto;
+    } catch (error) {
+      console.log(error);
+
+      const msg = extractErrorMessage(error);
+      const responseDto = new GetAllCoffeeProviderResponseDto({
+        error: new ErrorResponseDto({
+          code: 'FetchError',
+          message: msg
+        })
+      });
+
+      return responseDto;
+    }
   }
 }

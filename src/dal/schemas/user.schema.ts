@@ -5,6 +5,8 @@ export class User extends mongoose.Document {
   email: string;
   password: string;
   role: mongoose.Types.ObjectId | Role;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export const UserSchema = new mongoose.Schema({
@@ -22,4 +24,4 @@ export const UserSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Role'
   },
-});
+}, { timestamps: true });

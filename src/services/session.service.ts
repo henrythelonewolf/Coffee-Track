@@ -18,7 +18,7 @@ export class SessionService {
     if (typeof user === 'undefined') {
       const responseDto: LoginResponseDto = {
         error: {
-          code: 'error',
+          code: 'FetchError',
           message: 'Email or password invalid.'
         }
       };
@@ -30,7 +30,7 @@ export class SessionService {
     if (match == false) {
       const responseDto: LoginResponseDto = {
         error: {
-          code: 'error',
+          code: 'FetchError',
           message: 'Email or password invalid.'
         }
       };
